@@ -3,4 +3,5 @@ export class TaskDTO {
     readonly todo: string;
     readonly priority: string;
     readonly done: boolean;
+    readonly date: Date;
 }

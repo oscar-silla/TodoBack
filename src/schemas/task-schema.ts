@@ -1,8 +1,18 @@
-import * as mongoose from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export const TaskSchema = new mongoose.Schema({
-    title: String,
-    todo: String,
-    priority: String,
-    done: Boolean
-});
+@Schema()
+export class Task extends Document {
+    @Prop()
+    title: String;
+    @Prop()
+    todo: String;
+    @Prop()
+    priority: String;
+    @Prop()
+    done: Boolean;
+    @Prop({ default: new Date() })
+    date: String;
+};
+
+export const TaskSchema = SchemaFactory.createForClass(Task);

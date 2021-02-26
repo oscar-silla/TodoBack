@@ -6,4 +6,5 @@ export interface iTask extends Document{
     readonly todo: string;
     readonly priority: string;
     readonly done: boolean;
+    readonly date: Date;
 }

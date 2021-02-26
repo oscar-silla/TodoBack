@@ -20,7 +20,7 @@ export class TasksService {
     ********************************/
     async findAll(): Promise<iReturn> {
         const promise = new Promise<iReturn>((res) => {
-            this.taskModel.find().exec().then(r => {
+            this.taskModel.find().sort({date: -1}).exec().then(r => {
                 res({
                     msg: "All Tasks",
                     status: 200,
@@ -85,7 +85,7 @@ export class TasksService {
      * return Promise<iReturn>
     ********************************/
     async update(id: string, taskDetail: TaskDTO): Promise<iReturn> {
-        const exist = this.taskModel.exists({ _id: id });
+        const exist = await this.taskModel.exists({ _id: id });
         const promise = new Promise<iReturn>((res) => {
             if (!exist) {
                 res({
@@ -113,7 +113,7 @@ export class TasksService {
      * return Promise<iReturn>
     ********************************/
     async delete(id: string): Promise<iReturn> {
-        const exist = this.taskModel.exists({_id : id});
+        const exist = await this.taskModel.exists({_id : id});
         const promise = new Promise<iReturn>((res) => {
             if (!exist) {
                 res({
